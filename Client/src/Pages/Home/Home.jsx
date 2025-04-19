@@ -9,8 +9,8 @@ const Home = () => {
         const file = e.target.files[0];
         const formData = new FormData();
         formData.append('file', file);
-        formData.append("upload_preset", import.meta.env.REACT_APP_UPLOAD_PRESET);
-        axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.REACT_APP_CLOUD_NAME}`, formData)
+        formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+        axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_APP_CLOUD_NAME}/image/upload`, formData)
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
@@ -37,7 +37,7 @@ const Home = () => {
                 <button
                     type='submit'
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
-                    Upload
+                    Upload Image
                 </button>
             </div>
         </div>

@@ -11,14 +11,14 @@ const Home = () => {
         formData.append('file', file);
         formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
         axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_APP_CLOUD_NAME}/image/upload`, formData)
-            .then(res => console.log(res))
+            .then(res => setImage(res.data.secure_url))
             .catch(err => console.log(err))
     }
 
 
 
     return (
-        <div className='bg-white min-h-screen flex items-center justify-center'>
+        <div className='bg-white min-h-screen flex items-center justify-center gap-10'>
             <div className="p-6 bg-gray-100 rounded-lg shadow-md">
                 <label className="block mb-4">
                     <span className="text-gray-700 font-medium">Choose a file</span>
@@ -39,6 +39,14 @@ const Home = () => {
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
                     Upload Image
                 </button>
+            </div>
+            <hr />
+            <div>
+                <img
+                    className='max-w-sm'
+                    src={image}
+                    alt="image" />
+                <p className='text-lg text-green-500'> <span className='font-bold'>URL: </span>{image}</p>
             </div>
         </div>
     )
